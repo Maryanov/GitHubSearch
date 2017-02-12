@@ -25,18 +25,17 @@ import com.andreymaryanov.githubsearch.model.Feed;
 
 public class MainActivity extends AppCompatActivity {
 
-    RecyclerView rView=null;
-    ProgressBar vProgressBar = null;
-    String sQuery = "";
-    Integer page = 1;
-    Feed Data = null;
-    Boolean loadRun=false;
-    Integer loadCurrentCount=0;
-
+    private RecyclerView rView=null;
+    private ProgressBar vProgressBar = null;
+    private String sQuery = "";
+    private Integer page = 1;
+    private Feed Data = null;
+    private Boolean loadRun=false;
+    private Integer loadCurrentCount=0;
     private int previousTotal = 0;
     private int visibleThreshold = 9;
-    int firstVisibleItem, visibleItemCount, totalItemCount;
-    LinearLayoutManager layoutManager=null;
+    private int firstVisibleItem, visibleItemCount, totalItemCount;
+    private LinearLayoutManager layoutManager=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,6 +155,11 @@ public class MainActivity extends AppCompatActivity {
                 loadRun = false;
             }
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 
 }

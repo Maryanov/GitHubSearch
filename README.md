@@ -11,7 +11,8 @@
 
 1. Данные с GitHub Search API сайта получаем используя библиотеку Retrofit v2.
 2. Для подключения библиотеки используем Gradle.
-3. Для вывода списка используется ListView, хотя можно было бы использовать RecyclerView.
+3. В версии https://github.com/Maryanov/GitHubSearch/tree/c3b8d03c27bddc1975442508b0136f6896575091 для вывода списка используется ListView, 
+4. В последней версии переделал под RecyclerView.
 4. Так как элементов в списке может быть достаточно много (50000-totalCount), для реализации Adapter-а списка обязательно использование патерна ViewHolder.
-5. Данные при скролинге подгружаются по 10 элементов. Используем постраничную навигацию реализованую в GitHub Search API. (пример запроса - <https://api.github.com/search/repositories?q=query&page=5&per_page=10).
-
+5. Данные при скролинге подгружаются по 10 элементов. Используем постраничную навигацию реализованую в GitHub Search API. (пример запроса - <https://api.github.com/search/repositories?q=query&page=5&per_page=10). 
+6. Для отслеживания положения списка (отображаемых элементов) используем LinearLayoutManager и ScrollListener нашего списка. 
