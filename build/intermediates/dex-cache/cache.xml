@@ -20,15 +20,6 @@
         <dex dex="C:\Android\temp\GitHubSearch\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_83db4f578c76d68b57ca8d40ac1b035a80049aff\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-24.2.1_b27806828a00f5e58d8408c191526f4d31500a70.jar" />
-    </item>
-    <item
         is-multidex="true"
         jar="C:\Android\temp\GitHubSearch\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
         jumboMode="true"
@@ -38,24 +29,6 @@
         <dex dex="C:\Android\temp\GitHubSearch\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-24.2.1_098af319396dc9db41d147f5b72afc69682d33c4\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="867dad63c33388ff8c7644b236579355036d075f">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_feb46aba917309817f6565d30b4cc101d2f0494f.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\exploded-aar\com.makeramen\roundedimageview\2.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="814fc0c3ec69a944add398217d90077301501a74">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\com.makeramen-roundedimageview-2.2.1_fe210086894ae04eb5385f159b40bd118515ace2.jar" />
-    </item>
-    <item
         is-multidex="true"
         jar="C:\Android\temp\GitHubSearch\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\libs\internal_impl-24.2.1.jar"
         jumboMode="true"
@@ -63,15 +36,6 @@
         revision="23.0.3"
         sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
         <dex dex="C:\Android\temp\GitHubSearch\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_c1692b9318e027434754e7be957f02ec5525929e\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="078178155feec665243cbdcd5fe2dc8bad95ef70">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_1426dcc47dfc69cedcd404d35139f8f863ff3cb1.jar" />
     </item>
     <item
         is-multidex="true"
@@ -97,35 +61,8 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="bd6f97655644171b52efeb7edc47bcd5e3812949">
+        sha1="85505517081889dde501d8409d1828c499008e06">
         <dex dex="C:\Android\temp\GitHubSearch\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_7eca54d376b15859cd4c05eaf70f1120c138ed7d\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-24.2.1_6fe9b144a174821664f946132901a9f79282149d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_62832665985f5eb430506f4d64ef3305d84cfe25.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\exploded-aar\jp.wasabeef\glide-transformations\2.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="df451c6f391e3e32022fc964ed87bd57a5869128">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\jp.wasabeef-glide-transformations-2.0.1_4db7c8aec02ee03dc2b59aefda28508b897c9606.jar" />
     </item>
     <item
         is-multidex="true"
@@ -146,15 +83,6 @@
         <dex dex="C:\Android\temp\GitHubSearch\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-cardview-v7-24.2.1_43dcc3b9c205b18951c2a1f2bf2606d186f1a83b\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-24.2.1_461e2e2e7d649d5e48c6b727b9748ca58588df7c.jar" />
-    </item>
-    <item
         is-multidex="true"
         jar="C:\Android\temp\GitHubSearch\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\jars\classes.jar"
         jumboMode="true"
@@ -171,15 +99,6 @@
         revision="23.0.3"
         sha1="df451c6f391e3e32022fc964ed87bd57a5869128">
         <dex dex="C:\Android\temp\GitHubSearch\app\build\intermediates\transforms\dex\debug\folders\1000\10\jp.wasabeef-glide-transformations-2.0.1_fe2a574a8170184a614d9f033e455daffc68b1c1\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Andrey\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.7.0\9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4\glide-3.7.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\glide-3.7.0_9c3521062558c76200ba410da4af51ed677df7ff.jar" />
     </item>
     <item
         is-multidex="true"
@@ -200,15 +119,6 @@
         <dex dex="C:\Android\temp\GitHubSearch\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-24.2.1_f3e54c5252c55f3d52ae0f861a34ab8150ca7e62\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-24.2.1_7b755572ad4ea6711bfbb908e155a2575c9e239c.jar" />
-    </item>
-    <item
         is-multidex="true"
         jar="C:\Android\temp\GitHubSearch\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\libs\internal_impl-24.2.1.jar"
         jumboMode="true"
@@ -216,33 +126,6 @@
         revision="23.0.3"
         sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
         <dex dex="C:\Android\temp\GitHubSearch\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_70876661a7d3c60fdab51153cf246ab5035cf370\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="cc3d2b90dd4d44b1fae7017102d14e468c0cda85">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\instant-run_65b488bb3473fec69e184c1a4ecd6a926d831269.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Andrey\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\converter-gson\2.1.0\aa557d71ead91cbf26e0c316a0f593d168303309\converter-gson-2.1.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="aa557d71ead91cbf26e0c316a0f593d168303309">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\converter-gson-2.1.0_4586bfcc27f6329c736dcab5072554892d99fe4f.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\exploded-aar\com.android.support\design\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\com.android.support-design-24.2.1_c51ade249fdfdbce94c6939d744e55f8f870aba1.jar" />
     </item>
     <item
         is-multidex="true"
@@ -254,15 +137,6 @@
         <dex dex="C:\Android\temp\GitHubSearch\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_c2695205dbd32f5b4349fafc0263c0074399edd3\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-24.2.1_1e1f51fd76917c479d2e6f6f626ff72e7d29f173.jar" />
-    </item>
-    <item
         is-multidex="true"
         jar="C:\Android\temp\GitHubSearch\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.1\jars\classes.jar"
         jumboMode="true"
@@ -270,15 +144,6 @@
         revision="23.0.3"
         sha1="d5c731fc64c03dfe04d51134955b483551c35849">
         <dex dex="C:\Android\temp\GitHubSearch\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.2.1_6f6d5e7bc6553e28ddae2ebe6f0d67d4d87d035b\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Andrey\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.7\751f548c85fa49f330cecbb1875893f971b33c4e\gson-2.7.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\gson-2.7_1e61ec2986fd267f6de093267f4420fa1a983661.jar" />
     </item>
     <item
         is-multidex="true"
@@ -317,15 +182,6 @@
         <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_d26691009ab0f1b9b4805b29aacd252d8ae72644\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-24.2.1_00f673e4dd3a81f9b3fa09f62d208090e3405abc.jar" />
-    </item>
-    <item
         is-multidex="true"
         jar="C:\Users\Andrey\.gradle\caches\modules-2\files-2.1\jp.co.cyberagent.android.gpuimage\gpuimage-library\1.3.0\e2e1ca1fbb73283fbc84a0d0b0e3e982d288c658\gpuimage-library-1.3.0.jar"
         jumboMode="true"
@@ -342,33 +198,6 @@
         revision="23.0.3"
         sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
         <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch\app\build\intermediates\transforms\dex\debug\folders\1000\10\retrofit-2.1.0_2d4b31e165591cd10f10d6bdcd1da7d3afa2555c\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Andrey\.gradle\caches\modules-2\files-2.1\jp.co.cyberagent.android.gpuimage\gpuimage-library\1.3.0\e2e1ca1fbb73283fbc84a0d0b0e3e982d288c658\gpuimage-library-1.3.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="e2e1ca1fbb73283fbc84a0d0b0e3e982d288c658">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\gpuimage-library-1.3.0_ca1e27b608cec8641a1c5d2fc900de52003fa2ea.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="c5e6490573cd2cc8018417f60ddd251138b6ed61">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\com.android.support-cardview-v7-24.2.1_b7ae4530960a2808536343c5f49e77aa47ea059b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Andrey\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\retrofit\2.1.0\2de7cd8b95b7021b1d597f049bcb422055119f2c\retrofit-2.1.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\retrofit-2.1.0_2d4b31e165591cd10f10d6bdcd1da7d3afa2555c.jar" />
     </item>
     <item
         is-multidex="true"
@@ -416,24 +245,6 @@
         <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-3.3.0_77178e9786c5d2fa45ae6c48cefeb448690bcd1d\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-24.2.1_52526f6613c3405eb63e26be8a319a77e8088378.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Andrey\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.3.0\2b802460eea20f8f2ad9c08c74e0f14718e88aa9\okhttp-3.3.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="2b802460eea20f8f2ad9c08c74e0f14718e88aa9">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\okhttp-3.3.0_77178e9786c5d2fa45ae6c48cefeb448690bcd1d.jar" />
-    </item>
-    <item
         is-multidex="true"
         jar="C:\Android\temp\GitHubSearch\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\classes.jar"
         jumboMode="true"
@@ -441,15 +252,6 @@
         revision="23.0.3"
         sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
         <dex dex="C:\Android\temp\GitHubSearch\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-24.2.1_9a14c9cf366b46bb5fee15eb086acd46848756d4\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-24.2.1_b8571f348effa758162875d0c19c7ef49b5b78a0.jar" />
     </item>
     <item
         is-multidex="true"
@@ -479,15 +281,6 @@
         <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-24.2.1_134240979137678b2bd69649c33ccf711e546781\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_33c3c9726dbe2a0d95fa0fa1b2f5c8eee6570da0.jar" />
-    </item>
-    <item
         is-multidex="true"
         jar="C:\Android\MyAndroidStudioProject\GitHubSearch\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
         jumboMode="true"
@@ -495,15 +288,6 @@
         revision="23.0.3"
         sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
         <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_aab60cdbbe96c43060a8ff6abdc24e1f5c19d552\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-24.2.1_88bcd5f508d716707db00a7ee1c3aee82c856193.jar" />
     </item>
     <item
         is-multidex="true"
@@ -547,7 +331,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="388955068ded4e969da71dde49c1f9860cd28acc">
+        sha1="322da5eef9ff3453060d990fe845ed241d62db6f">
         <dex dex="C:\Android\temp\GitHubSearch\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_00766c2e3ce0643d02bb321a3cce516ec88fe8e7\classes.dex" />
     </item>
     <item
@@ -659,33 +443,6 @@
         <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.2.1_da540dbbec2d555f8cf5242840daca82b4245557\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_52e986b23ddd441ed076ce7f861ff3b737cb2281.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Program Files (x86)\SDK\sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\support-annotations-24.2.1_da540dbbec2d555f8cf5242840daca82b4245557.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_c057daf232fdde6f26f1e7b46a407781064bea17.jar" />
-    </item>
-    <item
         is-multidex="true"
         jar="C:\Android\MyAndroidStudioProject\GitHubSearch\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\classes.jar"
         jumboMode="true"
@@ -693,24 +450,6 @@
         revision="23.0.3"
         sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
         <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-24.2.1_474896c868c4eeb495013263cc2f5882cac52618\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Andrey\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.8.0\5ea7af56cc7c567ed9856d99efb30740e9b17ff\okio-1.8.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\okio-1.8.0_57b722e8d632529df22afaa8158f79e42bb8198b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
-        <dex dex="C:\Android\MyAndroidStudioProject\GitHubSearch1\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-24.2.1_07d33f98640a45e5e4c872de64850d3b79748df8.jar" />
     </item>
 
 </items>
