@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/GitHubSearch.iml" filepath="$PROJECT_DIR$/GitHubSearch.iml" />
-=======
-      <module fileurl="file://$PROJECT_DIR$/GitHubSearch1.iml" filepath="$PROJECT_DIR$/GitHubSearch1.iml" />
->>>>>>> 6659230d6f178ebed39d66531ac09164010e0eb5
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

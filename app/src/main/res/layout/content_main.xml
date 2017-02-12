@@ -13,6 +13,18 @@
     tools:context="com.andreymaryanov.githubsearch.MainActivity"
     tools:showIn="@layout/activity_main">
 
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/listViewData"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="5dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_below="@+id/toolbar"
+            android:scrollbars="none"/>
+<!--
         <ListView android:id="@+id/listViewData"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
@@ -23,7 +35,7 @@
             android:layout_below="@+id/toolbar"
             android:scrollbars="none"
             >
-        </ListView>
+        </ListView>-->
 
         <ProgressBar
             android:id="@+id/status_loading"

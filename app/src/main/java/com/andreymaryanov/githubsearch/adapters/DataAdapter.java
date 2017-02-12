@@ -20,12 +20,12 @@ import java.util.List;
 
 public class DataAdapter extends BaseAdapter {
 
-    private Context mContext;
-    private List<Item> mData;
+    private Context context;
+    private List<Item> data;
 
-    public DataAdapter(Context context, List<Item> objects) {
-        mContext = context;
-        mData = objects;
+    public DataAdapter(Context context, List<Item> data) {
+        this.context = context;
+        this.data = data;
     }
 
     static class ViewHolder {
@@ -37,7 +37,7 @@ public class DataAdapter extends BaseAdapter {
 
     @Override
     public Item getItem(int i) {
-        return mData.get(i);
+        return data.get(i);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class DataAdapter extends BaseAdapter {
         ViewHolder viewHolder;
 
         if (convertView == null){
-            LayoutInflater inflater = (LayoutInflater) mContext
+            LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.item, viewGroup, false);
             viewHolder = new ViewHolder();
@@ -62,7 +62,7 @@ public class DataAdapter extends BaseAdapter {
         viewHolder.description.setText(getItem(position).getDescription());
         viewHolder.language.setText("lang:"+getItem(position).getLanguage());
 
-        Glide.with(mContext).load(getItem(position).getOwner().getAvatarUrl())
+        Glide.with(context).load(getItem(position).getOwner().getAvatarUrl())
                 .into(viewHolder.avatar);
 
         return convertView;
@@ -75,6 +75,6 @@ public class DataAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mData.size();
+        return data.size();
     }
 }

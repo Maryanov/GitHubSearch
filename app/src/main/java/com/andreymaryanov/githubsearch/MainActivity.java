@@ -8,13 +8,13 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AbsListView;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -25,13 +25,18 @@ import com.andreymaryanov.githubsearch.model.Feed;
 
 public class MainActivity extends AppCompatActivity {
 
-    ListView lView=null;
+    RecyclerView rView=null;
     ProgressBar vProgressBar = null;
     String sQuery = "";
     Integer page = 1;
     Feed Data = null;
     Boolean loadRun=false;
     Integer loadCurrentCount=0;
+
+    private int previousTotal = 0;
+    private int visibleThreshold = 9;
+    int firstVisibleItem, visibleItemCount, totalItemCount;
+    LinearLayoutManager layoutManager=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,25 +46,31 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         handleIntent(getIntent());
 
-        lView = (ListView) findViewById(R.id.listViewData);
+        rView = (RecyclerView) findViewById(R.id.listViewData);
         vProgressBar = (ProgressBar) findViewById(R.id.status_loading);
 
-        lView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
+        rView.addOnScrollListener(new RecyclerView.OnScrollListener()
+        {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
 
-                if (scrollState==SCROLL_STATE_IDLE & loadRun==true){
-                    if (loadCurrentCount<Data.getTotalCount()) {
-                        page++;
-                        GitHuBSearch(sQuery, page);
-                    } else loadRun=false;
+                visibleItemCount = rView.getChildCount();
+                totalItemCount = layoutManager.getItemCount();
+                firstVisibleItem = layoutManager.findFirstVisibleItemPosition();
+
+                if (loadRun) {
+                    if (totalItemCount > previousTotal) {
+                        loadRun = false;
+                        previousTotal = totalItemCount;
+                        visibleThreshold+=10;
+                    }
                 }
-            }
-
-            public void onScroll(AbsListView view, int firstVisibleItem,
-                                 int visibleItemCount, int totalItemCount) {
-                if ((firstVisibleItem+visibleItemCount)==totalItemCount & totalItemCount!=0
-                        & visibleItemCount!=totalItemCount){
-                        loadRun=true;
+                if (!loadRun && (firstVisibleItem + visibleItemCount)
+                        >= (visibleThreshold) && totalItemCount>=10) {
+                    page++;
+                    GitHuBSearch(sQuery, page);
+                    loadRun = true;
                 }
             }
         });
@@ -97,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
             String query = intent.getStringExtra(SearchManager.QUERY);
             sQuery = query;
             page = 1;
+            visibleThreshold=9;
             loadCurrentCount=0;
             GitHuBSearch(sQuery, page);
         }
@@ -121,14 +133,16 @@ public class MainActivity extends AppCompatActivity {
                     if (page == 1) {
                         Data = new Feed();
                         Data = data;
-                        DataAdapter adapter = new DataAdapter(MainActivity.this, Data.getItems());
-                        lView.setAdapter(adapter);
+                        RecyclerViewAdapter adapter = new RecyclerViewAdapter(MainActivity.this, Data.getItems());
+                        layoutManager = new LinearLayoutManager(MainActivity.this);
+                        rView.setAdapter(adapter);
+                        rView.setLayoutManager(layoutManager);
                     } else {
                         Data.addNewItems(data.getItems());
-                        DataAdapter adapter = new DataAdapter(MainActivity.this, Data.getItems());
-                        Parcelable state = lView.onSaveInstanceState();
-                        lView.setAdapter(adapter);
-                        lView.onRestoreInstanceState(state);
+                        RecyclerViewAdapter adapter = new RecyclerViewAdapter(MainActivity.this, Data.getItems());
+                        Parcelable recyclerViewState = rView.getLayoutManager().onSaveInstanceState();//save
+                        rView.setAdapter(adapter);
+                        rView.getLayoutManager().onRestoreInstanceState(recyclerViewState);//restore
                         vProgressBar.setVisibility(View.GONE);
                         loadRun = false;
                     }
