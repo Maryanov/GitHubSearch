@@ -59,15 +59,13 @@ public class MainActivity extends AppCompatActivity {
                 firstVisibleItem = layoutManager.findFirstVisibleItemPosition();
 
                 if (loadRun) {
-                    if (totalItemCount > previousTotal) {
+                    //if (totalItemCount > previousTotal) {
                         loadRun = false;
                         previousTotal = totalItemCount;
-                        visibleThreshold+=10;
-                    }
+                    //}
                 }
                 if (!loadRun && (firstVisibleItem + visibleItemCount)
                         >= (visibleThreshold) && totalItemCount>=10) {
-                    page++;
                     GitHuBSearch(sQuery, page);
                     loadRun = true;
                 }
@@ -120,6 +118,8 @@ public class MainActivity extends AppCompatActivity {
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         if (activeNetworkInfo == null) {
             Toast.makeText(this, "нет соединений", Toast.LENGTH_SHORT).show();
+            //loadRun=false;
+            //if (totalItemCount>=10) previousTotal = totalItemCount-1;
             return;
         }
         if (Page>1) vProgressBar.setVisibility(View.VISIBLE);
@@ -127,16 +127,18 @@ public class MainActivity extends AppCompatActivity {
         apiService.getSearchResult(Query, "stars", "desc", Page, 10, new IApiCallback<Feed>() {
             @Override
             public void onSuccess(Feed data) {
-                if (data != null) {
+                if ((data != null)) {
                     loadCurrentCount=loadCurrentCount+data.getItems().size();
                     if (page == 1) {
+                        page++;
                         Data = new Feed();
                         Data = data;
                         RecyclerViewAdapter adapter = new RecyclerViewAdapter(MainActivity.this, Data.getItems());
                         layoutManager = new LinearLayoutManager(MainActivity.this);
                         rView.setAdapter(adapter);
                         rView.setLayoutManager(layoutManager);
-                    } else {
+                    } else  if (loadRun == true){
+                        page++;visibleThreshold+=10;
                         Data.addNewItems(data.getItems());
                         RecyclerViewAdapter adapter = new RecyclerViewAdapter(MainActivity.this, Data.getItems());
                         Parcelable recyclerViewState = rView.getLayoutManager().onSaveInstanceState();//save
@@ -145,13 +147,13 @@ public class MainActivity extends AppCompatActivity {
                         vProgressBar.setVisibility(View.GONE);
                         loadRun = false;
                     }
-                }
+                } else loadRun=false;
             }
 
             @Override
             public void onError(Throwable t) {
                 if (vProgressBar != null) vProgressBar.setVisibility(View.GONE);
-                if (page > 1) page--;
+                //if (page > 1) page--;
                 loadRun = false;
             }
         });
