@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private Boolean loadRun=false;
     private Integer loadCurrentCount=0;
     private int previousTotal = 0;
-    private int visibleThreshold = 9;
+    private int visibleThreshold = 29;
     private int firstVisibleItem, visibleItemCount, totalItemCount;
     private LinearLayoutManager layoutManager=null;
 
@@ -51,21 +51,15 @@ public class MainActivity extends AppCompatActivity {
         rView.addOnScrollListener(new RecyclerView.OnScrollListener()
         {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
 
                 visibleItemCount = rView.getChildCount();
                 totalItemCount = layoutManager.getItemCount();
                 firstVisibleItem = layoutManager.findFirstVisibleItemPosition();
 
-                if (loadRun) {
-                    //if (totalItemCount > previousTotal) {
-                        loadRun = false;
-                        previousTotal = totalItemCount;
-                    //}
-                }
-                if (!loadRun && (firstVisibleItem + visibleItemCount)
-                        >= (visibleThreshold) && totalItemCount>=10) {
+                if ((loadRun == false) && newState == RecyclerView.SCROLL_STATE_IDLE &&
+                        (firstVisibleItem + visibleItemCount)>= (visibleThreshold) &&
+                        totalItemCount>=10) {
                     GitHuBSearch(sQuery, page);
                     loadRun = true;
                 }
@@ -118,12 +112,9 @@ public class MainActivity extends AppCompatActivity {
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         if (activeNetworkInfo == null) {
             Toast.makeText(this, "нет соединений", Toast.LENGTH_SHORT).show();
-            //loadRun=false;
-            //if (totalItemCount>=10) previousTotal = totalItemCount-1;
             return;
         }
         if (Page>1) vProgressBar.setVisibility(View.VISIBLE);
-
         apiService.getSearchResult(Query, "stars", "desc", Page, 10, new IApiCallback<Feed>() {
             @Override
             public void onSuccess(Feed data) {
