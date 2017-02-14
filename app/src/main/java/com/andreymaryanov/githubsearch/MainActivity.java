@@ -2,7 +2,6 @@ package com.andreymaryanov.githubsearch;
 
 import android.app.SearchManager;
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -14,8 +13,6 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.andreymaryanov.githubsearch.adapters.*;
@@ -25,17 +22,16 @@ import com.andreymaryanov.githubsearch.model.Feed;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView rView=null;
-    private ProgressBar vProgressBar = null;
-    private String sQuery = "";
-    private Integer page = 1;
-    private Feed Data = null;
-    private Boolean loadRun=false;
+    private RecyclerView mainListView=null;
+    private String textQuery = "";
+    private Integer iPageSearch = 1;
+    private Feed feedData = null;
+    private Boolean isLoading=false;
     private Integer loadCurrentCount=0;
-    private int previousTotal = 0;
     private int visibleThreshold = 29;
     private int firstVisibleItem, visibleItemCount, totalItemCount;
     private LinearLayoutManager layoutManager=null;
+    private ApiService apiService = new ApiService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,25 +39,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        handleIntent(getIntent());
 
-        rView = (RecyclerView) findViewById(R.id.listViewData);
-        vProgressBar = (ProgressBar) findViewById(R.id.status_loading);
-
-        rView.addOnScrollListener(new RecyclerView.OnScrollListener()
+        mainListView = (RecyclerView) findViewById(R.id.listViewData);
+        mainListView.addOnScrollListener(new RecyclerView.OnScrollListener()
         {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
 
-                visibleItemCount = rView.getChildCount();
+                visibleItemCount = mainListView.getChildCount();
                 totalItemCount = layoutManager.getItemCount();
                 firstVisibleItem = layoutManager.findFirstVisibleItemPosition();
 
-                if ((loadRun == false) && newState == RecyclerView.SCROLL_STATE_IDLE &&
+                if ((isLoading == false) && newState == RecyclerView.SCROLL_STATE_IDLE &&
                         (firstVisibleItem + visibleItemCount)>= (visibleThreshold) &&
                         totalItemCount>=10) {
-                    GitHuBSearch(sQuery, page);
-                    loadRun = true;
+                    GitHuBSearch(textQuery, iPageSearch);
+                    isLoading = true;
                 }
             }
         });
@@ -78,7 +71,28 @@ public class MainActivity extends AppCompatActivity {
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                runSearch(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                runSearch(newText);
+                return false;
+            }
+        });
         return true;
+    }
+
+    void runSearch(String text) {
+        textQuery = text;
+        iPageSearch = 1;
+        visibleThreshold=9;
+        loadCurrentCount=0;
+        GitHuBSearch(textQuery, iPageSearch);
     }
 
     @Override
@@ -86,68 +100,53 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onNewIntent(Intent intent) {
-        handleIntent(intent);
-    }
+    private void GitHuBSearch(String Query, Integer Page) {
 
-    private ApiService apiService = new ApiService();
+        if (isConnectEnternet()) {
+            apiService.getSearchResult(Query, "stars", "desc", Page, 10, new IApiCallback<Feed>() {
+                @Override
+                public void onSuccess(Feed data) {
+                    if ((data != null)) {
+                        loadCurrentCount = loadCurrentCount + data.getItems().size();
+                        if (iPageSearch == 1) {
+                            iPageSearch++;
+                            feedData = new Feed();
+                            feedData = data;
+                            RecyclerViewAdapter adapter = new RecyclerViewAdapter(MainActivity.this, feedData.getItems());
+                            layoutManager = new LinearLayoutManager(MainActivity.this);
+                            mainListView.setAdapter(adapter);
+                            mainListView.setLayoutManager(layoutManager);
+                        } else if (isLoading == true) {
+                            iPageSearch++;
+                            visibleThreshold += 10;
+                            feedData.addNewItems(data.getItems());
+                            RecyclerViewAdapter adapter = new RecyclerViewAdapter(MainActivity.this, feedData.getItems());
+                            Parcelable recyclerViewState = mainListView.getLayoutManager().onSaveInstanceState();//save
+                            mainListView.setAdapter(adapter);
+                            mainListView.getLayoutManager().onRestoreInstanceState(recyclerViewState);//restore
+                            isLoading = false;
+                        }
+                    } else isLoading = false;
+                }
 
-    private void handleIntent(Intent intent) {
-
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            sQuery = query;
-            page = 1;
-            visibleThreshold=9;
-            loadCurrentCount=0;
-            GitHuBSearch(sQuery, page);
+                @Override
+                public void onError(Throwable t) {
+                    isLoading = false;
+                }
+            });
         }
     }
 
-    void GitHuBSearch(String Query, Integer Page) {
+    private boolean isConnectEnternet(){
 
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         if (activeNetworkInfo == null) {
             Toast.makeText(this, "нет соединений", Toast.LENGTH_SHORT).show();
-            return;
+            return false;
         }
-        if (Page>1) vProgressBar.setVisibility(View.VISIBLE);
-        apiService.getSearchResult(Query, "stars", "desc", Page, 10, new IApiCallback<Feed>() {
-            @Override
-            public void onSuccess(Feed data) {
-                if ((data != null)) {
-                    loadCurrentCount=loadCurrentCount+data.getItems().size();
-                    if (page == 1) {
-                        page++;
-                        Data = new Feed();
-                        Data = data;
-                        RecyclerViewAdapter adapter = new RecyclerViewAdapter(MainActivity.this, Data.getItems());
-                        layoutManager = new LinearLayoutManager(MainActivity.this);
-                        rView.setAdapter(adapter);
-                        rView.setLayoutManager(layoutManager);
-                    } else  if (loadRun == true){
-                        page++;visibleThreshold+=10;
-                        Data.addNewItems(data.getItems());
-                        RecyclerViewAdapter adapter = new RecyclerViewAdapter(MainActivity.this, Data.getItems());
-                        Parcelable recyclerViewState = rView.getLayoutManager().onSaveInstanceState();//save
-                        rView.setAdapter(adapter);
-                        rView.getLayoutManager().onRestoreInstanceState(recyclerViewState);//restore
-                        vProgressBar.setVisibility(View.GONE);
-                        loadRun = false;
-                    }
-                } else loadRun=false;
-            }
-
-            @Override
-            public void onError(Throwable t) {
-                if (vProgressBar != null) vProgressBar.setVisibility(View.GONE);
-                //if (page > 1) page--;
-                loadRun = false;
-            }
-        });
+        return true;
     }
 
     @Override

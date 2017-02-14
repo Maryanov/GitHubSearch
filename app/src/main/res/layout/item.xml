@@ -60,6 +60,14 @@
                 android:layout_alignStart="@+id/textFullName"
                 android:layout_marginTop="16dp" />
 
+            <ProgressBar
+                android:id="@+id/status_loading"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:visibility="gone"
+                android:layout_centerHorizontal="true"
+                />
+
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </FrameLayout>

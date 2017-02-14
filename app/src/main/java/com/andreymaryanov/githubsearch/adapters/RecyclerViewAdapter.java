@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.andreymaryanov.githubsearch.R;
@@ -39,6 +40,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         viewHolder.fullName.setText(items.get(i).getFullName());
         viewHolder.description.setText(items.get(i).getDescription());
         viewHolder.language.setText("lang:"+items.get(i).getLanguage());
+        if (i==(items.size()-1) && (items.size()%10)==0){
+            viewHolder.progressBar.setVisibility(View.VISIBLE);
+            viewHolder.fullName.setVisibility(View.GONE);
+            viewHolder.description.setVisibility(View.GONE);
+            viewHolder.language.setVisibility(View.GONE);
+            viewHolder.avatar.setVisibility(View.GONE);
+        }
+         else {
+            viewHolder.progressBar.setVisibility(View.GONE);
+            viewHolder.fullName.setVisibility(View.VISIBLE);
+            viewHolder.description.setVisibility(View.VISIBLE);
+            viewHolder.language.setVisibility(View.VISIBLE);
+            viewHolder.avatar.setVisibility(View.VISIBLE);
+        }
         Glide.with(context).load(items.get(i).getOwner().getAvatarUrl())
                 .into(viewHolder.avatar);
     }
@@ -54,6 +69,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         private TextView fullName;
         private TextView description;
         private TextView language;
+        private ProgressBar progressBar;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -61,6 +77,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             fullName = (TextView) itemView.findViewById(R.id.textFullName);
             description = (TextView) itemView.findViewById(R.id.textDescription);
             language = (TextView) itemView.findViewById(R.id.textLanguage);
+            progressBar = (ProgressBar) itemView.findViewById(R.id.status_loading);
         }
     }
 

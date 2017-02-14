@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.andreymaryanov.githubsearch.R;
@@ -33,6 +34,7 @@ public class DataAdapter extends BaseAdapter {
         TextView fullName;
         TextView description;
         TextView language;
+        ProgressBar progressBar;
     }
 
     @Override
@@ -53,18 +55,28 @@ public class DataAdapter extends BaseAdapter {
             viewHolder.fullName = (TextView) convertView.findViewById(R.id.textFullName);
             viewHolder.description = (TextView) convertView.findViewById(R.id.textDescription);
             viewHolder.language = (TextView) convertView.findViewById(R.id.textLanguage);
+            viewHolder.progressBar = (ProgressBar) convertView.findViewById(R.id.status_loading);
+
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.fullName.setText(getItem(position).getFullName());
-        viewHolder.description.setText(getItem(position).getDescription());
-        viewHolder.language.setText("lang:"+getItem(position).getLanguage());
+        if (position==data.size()){
+            viewHolder.fullName.setVisibility(View.GONE);
+            viewHolder.description.setVisibility(View.GONE);
+            viewHolder.language.setVisibility(View.GONE);
+            viewHolder.avatar.setVisibility(View.GONE);
+            viewHolder.progressBar.setVisibility(View.VISIBLE);
+        } else {
+            viewHolder.fullName.setText(getItem(position).getFullName());
+            viewHolder.description.setText(getItem(position).getDescription());
+            viewHolder.language.setText("lang:" + getItem(position).getLanguage());
 
-        Glide.with(context).load(getItem(position).getOwner().getAvatarUrl())
-                .into(viewHolder.avatar);
-
+            Glide.with(context).load(getItem(position).getOwner().getAvatarUrl())
+                    .into(viewHolder.avatar);
+            viewHolder.progressBar.setVisibility(View.GONE);
+        }
         return convertView;
     }
 

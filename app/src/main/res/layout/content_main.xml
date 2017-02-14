@@ -35,7 +35,7 @@
             android:layout_below="@+id/toolbar"
             android:scrollbars="none"
             >
-        </ListView>-->
+        </ListView>
 
         <ProgressBar
             android:id="@+id/status_loading"
@@ -45,6 +45,6 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_alignBottom="@+id/listViewData"
-            />
+            />-->
 
 </RelativeLayout>
