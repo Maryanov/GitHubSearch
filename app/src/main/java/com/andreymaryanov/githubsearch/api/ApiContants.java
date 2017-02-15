@@ -13,4 +13,7 @@ public class ApiContants {
     public static final String SEARCH_ISSUES = "search/issues";
     public static final String SEARCH_USERS = "search/users";
 
+    public static final String SEARCH_PARAMETER_SORT = "stars";
+    public static final String SEARCH_PARAMETER_ORDER = "desc";
+
 }

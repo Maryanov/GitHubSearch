@@ -13,6 +13,7 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.andreymaryanov.githubsearch.adapters.*;
@@ -20,16 +21,21 @@ import com.andreymaryanov.githubsearch.api.ApiService;
 import com.andreymaryanov.githubsearch.listener.IApiCallback;
 import com.andreymaryanov.githubsearch.model.Feed;
 
+import static com.andreymaryanov.githubsearch.AppConstants.*;
+import static com.andreymaryanov.githubsearch.api.ApiContants.*;
+
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView mainListView=null;
-    private String textQuery = "";
-    private Integer iPageSearch = 1;
-    private Feed feedData = null;
-    private Boolean isLoading=false;
-    private Integer loadCurrentCount=0;
-    private int visibleThreshold = 29;
-    private int firstVisibleItem, visibleItemCount, totalItemCount;
+    public RecyclerView mainListView=null;
+    private String textQuery = STRING_EMPTY;
+    private Integer pageSearch = FIRST_PAGE;
+    private Feed listFeed = new Feed();
+    private Boolean isCommandLoading=false;
+    private Integer feedLoadCurrentCount=0;
+    private int listVisibleThreshold = THRESHOLD_LOAD_LIST;
+    private int listFirstVisibleItem=0;
+    private int listVisibleItemCount=0;
+    private int listTotalItemCount=0;
     private LinearLayoutManager layoutManager=null;
     private ApiService apiService = new ApiService();
 
@@ -40,23 +46,28 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mainListView = (RecyclerView) findViewById(R.id.listViewData);
+        mainListView = (RecyclerView) findViewById(R.id.mainListView);
+
+        layoutManager = new LinearLayoutManager(MainActivity.this);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(MainActivity.this, listFeed.getItems());
+        layoutManager = new LinearLayoutManager(MainActivity.this);
+        mainListView.setAdapter(adapter);
+        mainListView.setLayoutManager(layoutManager);
+
         mainListView.addOnScrollListener(new RecyclerView.OnScrollListener()
         {
-            @Override
+            /*@Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
 
-                visibleItemCount = mainListView.getChildCount();
-                totalItemCount = layoutManager.getItemCount();
-                firstVisibleItem = layoutManager.findFirstVisibleItemPosition();
+                listVisibleItemCount = mainListView.getChildCount();
+                listTotalItemCount = layoutManager.getItemCount();
+                listFirstVisibleItem = layoutManager.findFirstVisibleItemPosition();
 
-                if ((isLoading == false) && newState == RecyclerView.SCROLL_STATE_IDLE &&
-                        (firstVisibleItem + visibleItemCount)>= (visibleThreshold) &&
-                        totalItemCount>=10) {
-                    GitHuBSearch(textQuery, iPageSearch);
-                    isLoading = true;
+                if (isViewLastItem(newState)){
+                    isCommandLoading = true;
+                    gitHuBSearch(textQuery, pageSearch);
                 }
-            }
+            }*/
         });
     }
 
@@ -64,12 +75,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        SearchManager searchManager =
-                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView =
-                (SearchView) menu.findItem(R.id.menu_search).getActionView();
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(getComponentName()));
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -88,11 +96,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void runSearch(String text) {
+        mainListView.setVisibility(View.VISIBLE);
         textQuery = text;
-        iPageSearch = 1;
-        visibleThreshold=9;
-        loadCurrentCount=0;
-        GitHuBSearch(textQuery, iPageSearch);
+        pageSearch = FIRST_PAGE;
+        listVisibleThreshold=THRESHOLD_LOAD_LIST;
+        feedLoadCurrentCount=0;
+        gitHuBSearch(textQuery, pageSearch);
     }
 
     @Override
@@ -100,53 +109,62 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void GitHuBSearch(String Query, Integer Page) {
+    private void gitHuBSearch(String query, Integer page) {
 
-        if (isConnectEnternet()) {
-            apiService.getSearchResult(Query, "stars", "desc", Page, 10, new IApiCallback<Feed>() {
+        if (isConnectInternet()) {
+            apiService.getSearchResult(query,
+                                       SEARCH_PARAMETER_SORT,
+                                       SEARCH_PARAMETER_ORDER,
+                                       page,
+                                       LOAD_PAGE_SAZE,
+                                       new IApiCallback<Feed>() {
                 @Override
                 public void onSuccess(Feed data) {
                     if ((data != null)) {
-                        loadCurrentCount = loadCurrentCount + data.getItems().size();
-                        if (iPageSearch == 1) {
-                            iPageSearch++;
-                            feedData = new Feed();
-                            feedData = data;
-                            RecyclerViewAdapter adapter = new RecyclerViewAdapter(MainActivity.this, feedData.getItems());
-                            layoutManager = new LinearLayoutManager(MainActivity.this);
+                        feedLoadCurrentCount = feedLoadCurrentCount + data.getItems().size();
+                        if (pageSearch.equals(FIRST_PAGE)) {
+                            pageSearch++;
+                            listFeed = new Feed();
+                            listFeed = data;
+                            RecyclerViewAdapter adapter = new RecyclerViewAdapter(MainActivity.this, listFeed.getItems());
                             mainListView.setAdapter(adapter);
-                            mainListView.setLayoutManager(layoutManager);
-                        } else if (isLoading == true) {
-                            iPageSearch++;
-                            visibleThreshold += 10;
-                            feedData.addNewItems(data.getItems());
-                            RecyclerViewAdapter adapter = new RecyclerViewAdapter(MainActivity.this, feedData.getItems());
+                        } else if (isCommandLoading) {
+                            pageSearch++;
+                            listVisibleThreshold += LOAD_PAGE_SAZE;
+                            listFeed.addNewItems(data.getItems());
+                            RecyclerViewAdapter adapter = new RecyclerViewAdapter(MainActivity.this, listFeed.getItems());
                             Parcelable recyclerViewState = mainListView.getLayoutManager().onSaveInstanceState();//save
                             mainListView.setAdapter(adapter);
                             mainListView.getLayoutManager().onRestoreInstanceState(recyclerViewState);//restore
-                            isLoading = false;
+                            isCommandLoading = false;
                         }
-                    } else isLoading = false;
+                    } else isCommandLoading = false;
                 }
 
                 @Override
                 public void onError(Throwable t) {
-                    isLoading = false;
+                    isCommandLoading = false;
                 }
             });
         }
     }
 
-    private boolean isConnectEnternet(){
+    private boolean isConnectInternet(){
 
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         if (activeNetworkInfo == null) {
-            Toast.makeText(this, "нет соединений", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, MESSAGE_ERROR, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
+    }
+
+    private boolean isViewLastItem(int newState){
+        return ((!isCommandLoading) && newState == RecyclerView.SCROLL_STATE_IDLE &&
+                (listFirstVisibleItem + listVisibleItemCount) >= (listVisibleThreshold) &&
+                listTotalItemCount >= LOAD_PAGE_SAZE);
     }
 
     @Override

@@ -15,6 +15,8 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+import static com.andreymaryanov.githubsearch.AppConstants.*;
+
 /**
  * Created by Andrey on 12.02.2017.
  */
@@ -40,7 +42,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         viewHolder.fullName.setText(items.get(i).getFullName());
         viewHolder.description.setText(items.get(i).getDescription());
         viewHolder.language.setText("lang:"+items.get(i).getLanguage());
-        if (i==(items.size()-1) && (items.size()%10)==0){
+        if (i==(items.size()-1) && (items.size()%LOAD_PAGE_SAZE)==0){
             viewHolder.progressBar.setVisibility(View.VISIBLE);
             viewHolder.fullName.setVisibility(View.GONE);
             viewHolder.description.setVisibility(View.GONE);
@@ -53,9 +55,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             viewHolder.description.setVisibility(View.VISIBLE);
             viewHolder.language.setVisibility(View.VISIBLE);
             viewHolder.avatar.setVisibility(View.VISIBLE);
+            Glide.with(context).load(items.get(i).getOwner().getAvatarUrl())
+                    .into(viewHolder.avatar);
         }
-        Glide.with(context).load(items.get(i).getOwner().getAvatarUrl())
-                .into(viewHolder.avatar);
     }
 
     @Override
