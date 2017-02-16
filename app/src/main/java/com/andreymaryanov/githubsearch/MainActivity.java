@@ -5,6 +5,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private int listTotalItemCount=0;
     private LinearLayoutManager layoutManager=null;
     private ApiService apiService = new ApiService();
+    Handler handler = new Handler();
+    Integer a=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         mainListView.addOnScrollListener(new RecyclerView.OnScrollListener()
         {
-            /*@Override
+            @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
 
                 listVisibleItemCount = mainListView.getChildCount();
@@ -67,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                     isCommandLoading = true;
                     gitHuBSearch(textQuery, pageSearch);
                 }
-            }*/
+            }
         });
     }
 
@@ -88,7 +91,14 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                runSearch(newText);
+                textQuery = newText;
+                if (isCommandLoading) return false;
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        runSearch(textQuery);
+                    }
+                }, 2000);
+                isCommandLoading = true;
                 return false;
             }
         });
@@ -128,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                             listFeed = data;
                             RecyclerViewAdapter adapter = new RecyclerViewAdapter(MainActivity.this, listFeed.getItems());
                             mainListView.setAdapter(adapter);
-                        } else if (isCommandLoading) {
+                        } else /*if (isCommandLoading)*/ {
                             pageSearch++;
                             listVisibleThreshold += LOAD_PAGE_SAZE;
                             listFeed.addNewItems(data.getItems());
@@ -136,9 +146,9 @@ public class MainActivity extends AppCompatActivity {
                             Parcelable recyclerViewState = mainListView.getLayoutManager().onSaveInstanceState();//save
                             mainListView.setAdapter(adapter);
                             mainListView.getLayoutManager().onRestoreInstanceState(recyclerViewState);//restore
-                            isCommandLoading = false;
+                            //isCommandLoading = false;
                         }
-                    } else isCommandLoading = false;
+                    }  isCommandLoading = false;
                 }
 
                 @Override
